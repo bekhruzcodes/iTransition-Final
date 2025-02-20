@@ -1,0 +1,231 @@
+# Web Application for Customizable Forms - Technical Design
+
+## 1. Technology Stack
+### Core Technologies
+- **Frontend**: React (required for JS track)
+  - TypeScript recommended for type safety
+  - State Management: React Context or Redux Toolkit
+  - UI Framework: Either Material-UI or Tailwind CSS
+- **Backend** (choose one):
+  - .NET: C# with ASP.NET Core
+  - PHP: Symfony 7+
+  - JavaScript: Node.js with Express/NestJS
+- **Database**: PostgreSQL recommended
+  - Excellent full-text search capabilities
+  - JSON support for future extensibility
+  - Strong ORM support across all platforms
+
+### Key Libraries/Components
+1. **Authentication**
+   - JWT for token-based auth
+   - Passport/Auth0 for social login (optional)
+   - Role-based access control (RBAC)
+
+2. **UI Components**
+   - Form Builder: react-form-builder2 or similar
+   - Rich Text Editor: TinyMCE/CKEditor for markdown
+   - File Upload: react-dropzone
+   - Tag Input: react-tag-input
+   - Data Grid: ag-Grid or TanStack Table
+   - Charts: recharts for analytics
+   - DnD: react-beautiful-dnd for question reordering
+
+3. **Real-time Features**
+   - WebSocket/SignalR for live comments
+   - Server-Sent Events as fallback
+
+## 2. Database Schema
+
+### Core Tables
+```sql
+Users
+- id (PK)
+- email
+- password_hash
+- is_admin
+- is_blocked
+- created_at
+
+Templates
+- id (PK)
+- user_id (FK)
+- title
+- description
+- topic
+- image_url
+- is_public
+- created_at
+
+Questions
+- id (PK)
+- template_id (FK)
+- type (ENUM)
+- title
+- description
+- order_index
+- show_in_table
+- options_json (for select types)
+
+Forms
+- id (PK)
+- template_id (FK)
+- user_id (FK)
+- created_at
+
+Answers
+- id (PK)
+- form_id (FK)
+- question_id (FK)
+- value_text
+- value_int
+- value_bool
+
+Comments
+- id (PK)
+- template_id (FK)
+- user_id (FK)
+- content
+- created_at
+
+Likes
+- template_id (FK)
+- user_id (FK)
+- PRIMARY KEY (template_id, user_id)
+
+Tags
+- id (PK)
+- name
+- created_at
+
+TemplateTags
+- template_id (FK)
+- tag_id (FK)
+- PRIMARY KEY (template_id, tag_id)
+
+TemplateAccess
+- template_id (FK)
+- user_id (FK)
+- PRIMARY KEY (template_id, user_id)
+```
+
+## 3. API Endpoints
+
+### Authentication
+```
+POST /api/auth/register
+POST /api/auth/login
+POST /api/auth/logout
+GET  /api/auth/me
+```
+
+### Templates
+```
+GET    /api/templates
+POST   /api/templates
+GET    /api/templates/{id}
+PUT    /api/templates/{id}
+DELETE /api/templates/{id}
+GET    /api/templates/search?q={query}
+```
+
+### Forms
+```
+GET    /api/templates/{templateId}/forms
+POST   /api/templates/{templateId}/forms
+GET    /api/forms/{id}
+PUT    /api/forms/{id}
+DELETE /api/forms/{id}
+```
+
+### Comments
+```
+GET    /api/templates/{templateId}/comments
+POST   /api/templates/{templateId}/comments
+DELETE /api/comments/{id}
+```
+
+### Admin
+```
+GET    /api/admin/users
+PUT    /api/admin/users/{id}/block
+PUT    /api/admin/users/{id}/unblock
+PUT    /api/admin/users/{id}/admin
+DELETE /api/admin/users/{id}
+```
+
+## 4. Key Features Implementation
+
+### Full-text Search
+- Utilize PostgreSQL's tsvector/tsquery
+- Index template titles, descriptions, and questions
+- Implement search ranking
+
+### Image Upload
+- Use cloud storage (AWS S3/Cloudinary)
+- Generate signed URLs for secure access
+- Handle image optimization
+
+### Real-time Comments
+- WebSocket connection per template page
+- Message queue for scalability
+- Optimistic UI updates
+
+### Internationalization
+- React-intl for translations
+- Separate translation files per language
+- Language detection and persistence
+
+### Theme Support
+- CSS variables for theming
+- Theme context provider
+- Local storage persistence
+
+## 5. Performance Considerations
+
+### Database Optimization
+- Proper indexing (especially for full-text search)
+- Pagination for all list endpoints
+- Eager loading to prevent N+1 queries
+
+### Frontend Optimization
+- Code splitting by route
+- Lazy loading of heavy components
+- Memoization of expensive calculations
+- Virtual scrolling for long lists
+
+### Caching Strategy
+- Redis for session storage
+- API response caching
+- Browser caching headers
+
+## 6. Security Measures
+
+1. **Authentication & Authorization**
+   - JWT with short expiration
+   - CSRF protection
+   - Role-based access control
+
+2. **Data Protection**
+   - Input validation
+   - SQL injection prevention
+   - XSS protection
+   - Rate limiting
+
+3. **Infrastructure**
+   - HTTPS only
+   - Secure headers
+   - API versioning
+   - Error handling
+
+## 7. Deployment Strategy
+
+1. **Development**
+   - Docker compose for local development
+   - Environment-based configuration
+   - Hot reload support
+
+2. **Production**
+   - Container orchestration (Kubernetes/ECS)
+   - CI/CD pipeline
+   - Database migrations
+   - Monitoring and logging

@@ -1,0 +1,100 @@
+{
+  "templates": [
+    {
+      "id": 2,
+      "user": {
+        "id": 1,
+        "name": "go",
+        "email": "go@gmail.com",
+        "password": "$2y$13$kQDK3INk8HUgFEfZUGR8OeqNVgducrGwJ8yP6cRwmd8UW5PbC8HLa",
+        "userIdentifier": "go@gmail.com",
+        "roles": ["ROLE_USER"]
+      },
+      "topic": { "id": 1, "name": "Work" },
+      "title": "Hello from the other side",
+      "description": "Can you hear me",
+      "imageUrl": "https://static.vecteezy.com/system/resources/previews/016/269/522/non_2x/man-listening-to-the-podcast-while-working-vector.jpg",
+      "isPublic": true,
+      "createdAt": null,
+      "updatedAt": null,
+      "questions": [],
+      "forms": ["Needs to be implemented"],
+      "tags": [
+        {
+          "id": 2,
+          "name": "Work",
+          "createdAt": "2025-02-16T13:20:54+00:00",
+          "updatedAt": "2025-02-16T12:30:30+00:00"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "user": {
+        "id": 1,
+        "name": "go",
+        "email": "go@gmail.com",
+        "password": "$2y$13$kQDK3INk8HUgFEfZUGR8OeqNVgducrGwJ8yP6cRwmd8UW5PbC8HLa",
+        "userIdentifier": "go@gmail.com",
+        "roles": ["ROLE_USER"]
+      },
+      "topic": { "id": 1, "name": "Work" },
+      "title": "This is also a form",
+      "description": "You got some time ? This is for you",
+      "imageUrl": "https://www.radishlab.com/wp-content/uploads/2024/12/5faefd66d183e44d9983f790_97ed95aee9fe78b2bdbe69c8e4e89acb.jpeg",
+      "isPublic": true,
+      "createdAt": null,
+      "updatedAt": null,
+      "questions": [],
+      "forms": ["Needs to be implemented"],
+      "tags": [
+        {
+          "id": 2,
+          "name": "Work",
+          "createdAt": "2025-02-16T13:20:54+00:00",
+          "updatedAt": "2025-02-16T12:30:30+00:00"
+        },
+        {
+          "id": 3,
+          "name": "Study",
+          "createdAt": "2025-02-16T12:30:30+00:00",
+          "updatedAt": "2025-02-16T12:30:30+00:00"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "user": {
+        "id": 1,
+        "name": "go",
+        "email": "go@gmail.com",
+        "password": "$2y$13$kQDK3INk8HUgFEfZUGR8OeqNVgducrGwJ8yP6cRwmd8UW5PbC8HLa",
+        "userIdentifier": "go@gmail.com",
+        "roles": ["ROLE_USER"]
+      },
+      "topic": { "id": 1, "name": "Work" },
+      "title": "This is art",
+      "description": "And you are an artist my friend :)",
+      "imageUrl": "https://cdn.pixabay.com/photo/2019/09/30/10/12/notredame-de-paris-4515298_640.jpg",
+      "isPublic": true,
+      "createdAt": null,
+      "updatedAt": null,
+      "questions": [],
+      "forms": ["Needs to be implemented"],
+      "tags": [
+        {
+          "id": 2,
+          "name": "Work",
+          "createdAt": "2025-02-16T13:20:54+00:00",
+          "updatedAt": "2025-02-16T12:30:30+00:00"
+        },
+        {
+          "id": 4,
+          "name": "Hr",
+          "createdAt": "2025-02-16T12:30:30+00:00",
+          "updatedAt": "2025-02-16T12:30:30+00:00"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+Phase 1: Foundation (Week 1)
+Copy1. Backend Setup
+   - Set up Symfony with API Platform
+   - Create basic User entity and authentication
+   - Basic API endpoints
+
+2. Frontend Bootstrap
+   - Create React project with Vite
+   - Install shadcn/ui components
+   - Basic layout with:
+     - Header
+     - Navigation
+     - Content area
+   - Setup React Router
+   - Implement authentication UI
+Phase 2: Core Templates (Week 2)
+Copy1. Template Management
+   - Backend: Template CRUD endpoints
+   - Frontend: Start with simple list view
+   - Add creation form with basic fields
+   - Implement question management
+
+Key UI Components to use:
+- shadcn/ui Table for listing
+- shadcn/ui Form for template creation
+- React Beautiful DND for question reordering
+Phase 3: Forms (Week 3)
+Copy1. Form Submission
+   - Backend: Form submission endpoints
+   - Frontend: Dynamic form generation
+   - Basic form filling interface
+
+2. Results Display
+   - Backend: Add aggregation endpoints
+   - Frontend: Basic results table
+Phase 4: Search & Filter (Week 4)
+Copy1. Search Implementation
+   - Backend: Elasticsearch setup
+   - Frontend: Search bar component
+   - Results display with filtering
+Phase 5: Social Features (Week 5)
+Copy1. Comments & Likes
+   - Backend: Comment/like endpoints
+   - Frontend: Comment section UI
+   - Real-time updates
+Phase 6: Polish (Week 6)
+Copy1. Final Features
+   - Theme switching
+   - Language support
+   - Mobile responsiveness
