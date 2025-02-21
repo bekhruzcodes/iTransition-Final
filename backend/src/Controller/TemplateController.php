@@ -7,6 +7,7 @@ use App\Entity\QuestionOption;
 use App\Entity\Template;
 use App\Entity\Topic;
 use App\Repository\QuestionRepository;
+use App\Repository\TagRepository;
 use App\Repository\TemplateRepository;
 use App\Repository\TopicRepository;
 use App\Traits\EntityValidationTrait;
@@ -38,7 +39,27 @@ class TemplateController extends AbstractController
         private QuestionRepository $questionRepository,
         private ValidatorInterface $validator,
         private TopicRepository $topicRepository,
+        private TagRepository $tagRepository
     ) {}
+
+    #[Route('/tags/suggest', name: 'api_tags_suggest', methods: ['GET'])]
+    public function suggestTags(Request $request): JsonResponse
+    {
+        $query = $request->query->get('q', '');
+
+        // Assuming you have a TagRepository method to search tags
+        $suggestions = $this->tagRepository->searchByName($query);
+
+        // Format the response
+        $formattedSuggestions = array_map(function($tag) {
+            return [
+                'id' => $tag->getId(),
+                'name' => $tag->getName()
+            ];
+        }, $suggestions);
+
+        return new JsonResponse($formattedSuggestions);
+    }
 
     #[Route('/list', methods: ['GET'])]
     public function list(): JsonResponse
