@@ -2,97 +2,259 @@
   "templates": [
     {
       "id": 2,
-      "user": {
-        "id": 1,
-        "name": "go",
-        "email": "go@gmail.com",
-        "password": "$2y$13$kQDK3INk8HUgFEfZUGR8OeqNVgducrGwJ8yP6cRwmd8UW5PbC8HLa",
-        "userIdentifier": "go@gmail.com",
-        "roles": ["ROLE_USER"]
-      },
+      "user": { "id": 1, "name": "go" },
       "topic": { "id": 1, "name": "Work" },
+      "tags": [{ "id": 2, "name": "work" }],
       "title": "Hello from the other side",
       "description": "Can you hear me",
       "imageUrl": "https://static.vecteezy.com/system/resources/previews/016/269/522/non_2x/man-listening-to-the-podcast-while-working-vector.jpg",
       "isPublic": true,
       "createdAt": null,
       "updatedAt": null,
-      "questions": [],
-      "forms": ["Needs to be implemented"],
-      "tags": [
-        {
-          "id": 2,
-          "name": "Work",
-          "createdAt": "2025-02-16T13:20:54+00:00",
-          "updatedAt": "2025-02-16T12:30:30+00:00"
-        }
-      ]
+      "questions": []
     },
     {
       "id": 3,
-      "user": {
-        "id": 1,
-        "name": "go",
-        "email": "go@gmail.com",
-        "password": "$2y$13$kQDK3INk8HUgFEfZUGR8OeqNVgducrGwJ8yP6cRwmd8UW5PbC8HLa",
-        "userIdentifier": "go@gmail.com",
-        "roles": ["ROLE_USER"]
-      },
+      "user": { "id": 1, "name": "go" },
       "topic": { "id": 1, "name": "Work" },
+      "tags": [
+        { "id": 2, "name": "work" },
+        { "id": 3, "name": "study" }
+      ],
       "title": "This is also a form",
       "description": "You got some time ? This is for you",
       "imageUrl": "https://www.radishlab.com/wp-content/uploads/2024/12/5faefd66d183e44d9983f790_97ed95aee9fe78b2bdbe69c8e4e89acb.jpeg",
       "isPublic": true,
       "createdAt": null,
       "updatedAt": null,
-      "questions": [],
-      "forms": ["Needs to be implemented"],
-      "tags": [
-        {
-          "id": 2,
-          "name": "Work",
-          "createdAt": "2025-02-16T13:20:54+00:00",
-          "updatedAt": "2025-02-16T12:30:30+00:00"
-        },
-        {
-          "id": 3,
-          "name": "Study",
-          "createdAt": "2025-02-16T12:30:30+00:00",
-          "updatedAt": "2025-02-16T12:30:30+00:00"
-        }
-      ]
+      "questions": []
     },
     {
       "id": 4,
-      "user": {
-        "id": 1,
-        "name": "go",
-        "email": "go@gmail.com",
-        "password": "$2y$13$kQDK3INk8HUgFEfZUGR8OeqNVgducrGwJ8yP6cRwmd8UW5PbC8HLa",
-        "userIdentifier": "go@gmail.com",
-        "roles": ["ROLE_USER"]
-      },
+      "user": { "id": 1, "name": "go" },
       "topic": { "id": 1, "name": "Work" },
+      "tags": [
+        { "id": 4, "name": "hr" },
+        { "id": 2, "name": "work" }
+      ],
       "title": "This is art",
       "description": "And you are an artist my friend :)",
       "imageUrl": "https://cdn.pixabay.com/photo/2019/09/30/10/12/notredame-de-paris-4515298_640.jpg",
       "isPublic": true,
       "createdAt": null,
       "updatedAt": null,
-      "questions": [],
-      "forms": ["Needs to be implemented"],
-      "tags": [
+      "questions": []
+    },
+    {
+      "id": 12,
+      "user": { "id": 2, "name": "jon" },
+      "topic": { "id": 1, "name": "Work" },
+      "tags": [],
+      "title": "Employee Survey",
+      "description": "Annual feedback form",
+      "imageUrl": null,
+      "isPublic": true,
+      "createdAt": "2025-02-18T12:14:26+00:00",
+      "updatedAt": "2025-02-18T12:14:26+00:00",
+      "questions": [
         {
-          "id": 2,
-          "name": "Work",
-          "createdAt": "2025-02-16T13:20:54+00:00",
-          "updatedAt": "2025-02-16T12:30:30+00:00"
+          "id": 1,
+          "options": [
+            { "id": 1, "text": "Engineering", "value": "eng", "orderNum": 1 },
+            { "id": 2, "text": "Marketing", "value": "mkt", "orderNum": 2 },
+            { "id": 3, "text": "Human Resources", "value": "hr", "orderNum": 3 }
+          ],
+          "text": "What department do you work in?",
+          "type": "select",
+          "required": true,
+          "orderNum": 1,
+          "createdAt": "2025-02-18T12:14:26+00:00",
+          "updatedAt": "2025-02-18T12:14:26+00:00"
         },
         {
+          "id": 2,
+          "options": [],
+          "text": "How many years have you been with the company?",
+          "type": "text",
+          "required": true,
+          "orderNum": 2,
+          "createdAt": "2025-02-18T12:14:26+00:00",
+          "updatedAt": "2025-02-18T12:14:26+00:00"
+        },
+        {
+          "id": 3,
+          "options": [
+            {
+              "id": 4,
+              "text": "Health Insurance",
+              "value": "health",
+              "orderNum": 1
+            },
+            {
+              "id": 5,
+              "text": "Dental Coverage",
+              "value": "dental",
+              "orderNum": 2
+            },
+            { "id": 6, "text": "401k", "value": "401k", "orderNum": 3 }
+          ],
+          "text": "Which benefits do you use?",
+          "type": "checkbox",
+          "required": false,
+          "orderNum": 3,
+          "createdAt": "2025-02-18T12:14:26+00:00",
+          "updatedAt": "2025-02-18T12:14:26+00:00"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "user": { "id": 2, "name": "jon" },
+      "topic": { "id": 1, "name": "Work" },
+      "tags": [],
+      "title": "Employee Survey",
+      "description": "Annual feedback form",
+      "imageUrl": null,
+      "isPublic": true,
+      "createdAt": "2025-02-19T22:44:26+00:00",
+      "updatedAt": "2025-02-19T22:44:26+00:00",
+      "questions": [
+        {
           "id": 4,
-          "name": "Hr",
-          "createdAt": "2025-02-16T12:30:30+00:00",
-          "updatedAt": "2025-02-16T12:30:30+00:00"
+          "options": [
+            { "id": 7, "text": "Engineering", "value": "eng", "orderNum": 1 },
+            { "id": 8, "text": "Marketing", "value": "mkt", "orderNum": 2 },
+            { "id": 9, "text": "Human Resources", "value": "hr", "orderNum": 3 }
+          ],
+          "text": "What department do you work in?",
+          "type": "select",
+          "required": true,
+          "orderNum": 1,
+          "createdAt": "2025-02-19T22:44:26+00:00",
+          "updatedAt": "2025-02-19T22:44:26+00:00"
+        },
+        {
+          "id": 5,
+          "options": [],
+          "text": "How many years have you been with the company?",
+          "type": "text",
+          "required": true,
+          "orderNum": 2,
+          "createdAt": "2025-02-19T22:44:26+00:00",
+          "updatedAt": "2025-02-19T22:44:26+00:00"
+        },
+        {
+          "id": 6,
+          "options": [
+            {
+              "id": 10,
+              "text": "Health Insurance",
+              "value": "health",
+              "orderNum": 1
+            },
+            {
+              "id": 11,
+              "text": "Dental Coverage",
+              "value": "dental",
+              "orderNum": 2
+            },
+            { "id": 12, "text": "401k", "value": "401k", "orderNum": 3 }
+          ],
+          "text": "Which benefits do you use?",
+          "type": "checkbox",
+          "required": false,
+          "orderNum": 3,
+          "createdAt": "2025-02-19T22:44:26+00:00",
+          "updatedAt": "2025-02-19T22:44:26+00:00"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "user": { "id": 2, "name": "jon" },
+      "topic": { "id": 1, "name": "Work" },
+      "tags": [],
+      "title": "Untitled Fwrageorm",
+      "description": "erg",
+      "imageUrl": null,
+      "isPublic": true,
+      "createdAt": "2025-02-19T23:04:21+00:00",
+      "updatedAt": "2025-02-19T23:04:21+00:00",
+      "questions": [
+        {
+          "id": 7,
+          "options": [],
+          "text": "New ergerQuestion",
+          "type": "text",
+          "required": false,
+          "orderNum": 1,
+          "createdAt": "2025-02-19T23:04:21+00:00",
+          "updatedAt": "2025-02-19T23:04:21+00:00"
+        },
+        {
+          "id": 8,
+          "options": [
+            { "id": 13, "text": "Option 1", "value": "option_1", "orderNum": 1 }
+          ],
+          "text": "ueerghbergbvhstion",
+          "type": "radio",
+          "required": false,
+          "orderNum": 2,
+          "createdAt": "2025-02-19T23:04:21+00:00",
+          "updatedAt": "2025-02-19T23:04:21+00:00"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "user": { "id": 2, "name": "jon" },
+      "topic": { "id": 1, "name": "Work" },
+      "tags": [],
+      "title": "Heeeey odamlar",
+      "description": "Salommm",
+      "imageUrl": null,
+      "isPublic": true,
+      "createdAt": "2025-02-21T09:14:47+00:00",
+      "updatedAt": "2025-02-21T09:14:47+00:00",
+      "questions": [
+        {
+          "id": 9,
+          "options": [],
+          "text": "Qandaaay ?",
+          "type": "text",
+          "required": false,
+          "orderNum": 1,
+          "createdAt": "2025-02-21T09:14:47+00:00",
+          "updatedAt": "2025-02-21T09:14:47+00:00"
+        },
+        {
+          "id": 10,
+          "options": [
+            {
+              "id": 14,
+              "text": "Osh pishiryapman",
+              "value": "osh_pishiryapman",
+              "orderNum": 1
+            },
+            {
+              "id": 15,
+              "text": "Uhlayapman",
+              "value": "uhlayapman",
+              "orderNum": 2
+            },
+            {
+              "id": 16,
+              "text": "Maymun o\u0027ynatyapman",
+              "value": "maymun_o\u0027ynatyapman",
+              "orderNum": 3
+            }
+          ],
+          "text": "Nima qilyapsiz ?",
+          "type": "checkbox",
+          "required": false,
+          "orderNum": 2,
+          "createdAt": "2025-02-21T09:14:47+00:00",
+          "updatedAt": "2025-02-21T09:14:47+00:00"
         }
       ]
     }

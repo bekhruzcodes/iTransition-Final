@@ -27,8 +27,8 @@ const Card = ({ template }) => {
                         By {template?.user.name}
                     </span>
                     <div className="flex gap-2">
-                        {template.tags.map((tag) => (
-                            <span key={tag} className="text-xs px-2 py-1 bg-purple-100 text-purple-600 rounded-full">
+                        {template.tags.slice(0, 3).map((tag) => (
+                            <span key={tag.id} className="text-xs px-2 py-1 bg-purple-100 text-purple-600 rounded-full">
                                 {tag.name}
                             </span>
                         ))}
