@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Serializer\Attribute\Ignore;
 
 #[ORM\Entity]
@@ -13,19 +14,24 @@ class QuestionOption
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: "integer")]
+    #[Groups(['question-read', 'question-write', 'template-read', 'template-write'])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: Question::class, inversedBy: "options")]
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    #[Groups(['option-read', 'option-write'])]
     private ?Question $question = null;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Groups(['question-read', 'question-write', 'template-read', 'template-write'])]
     private string $text;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Groups(['question-read', 'template-read', 'template-write'])]
     private string $value;
 
     #[ORM\Column(type: "integer")]
+    #[Groups(['question-read', 'template-read', 'template-write'])]
     private int $orderNum;
 
     #[ORM\Column(type: "datetime", options: ["default" => "CURRENT_TIMESTAMP"])]

@@ -75,7 +75,7 @@ const FormBuilder = () => {
 
     const handleSave = async () => {
         try {
-            const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDAwMDUwMzksImV4cCI6MTc0MDAwODYzOSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiam9uQGdtYWlsLmNvbSJ9.bOtmTDQTLkkBQKeKFRUCaTJJtgGeCBfVD2iYENmRLcB6xtk4DytqoGTtdfkDhRDtFgVhwkwIv7lgfmvpTEdMQtaH8kgegNqbD_6OqxD1fk9BjEzOe6b-tQtAwDEt9vlrPQXyQ4uwRO8qQf82MrgJawY9M50hHD5SDoqGhO4DsQIjTSyM-D1AZQ6PricJc7f5NrLcw4CSauegHyxMyhCe70PBHfzBJPOACixPwsVJpFLzBTjnNJ0_Q5Fiz5sY5twiX3-TPYjHC5p7_8B-Pa60IRHrTFkKshksyRMFOP9bNrHetAJ3HTMBGcFRsK9sY2My-Z1jxOh30dTdrzFLHbVD6A";
+            const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDAxNDE3MDMsImV4cCI6MTc0MDIyODEwMywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiam9uQGdtYWlsLmNvbSJ9.T9Q1e0TptlnEu1QBMICM96KAwJ94bUBZXG1uzoUQLHLC4zemZDF_9gLhvMeu5YASfTrEPhoMWd9nI_pk5LQ07Q75FzZjG56R6_-E6R5JCju8txOjBt2xhy3XP_eRWoyi3jqP-vvN0GEAcXvO36i69ooH43isckhWfM8ZH7iUdajNwjDV4GNzHe6jQ8Gs0-0mjhScnvRl8_UswnQjLX5b2xrPeJp68MtREIDPfiXWQhkPBQRlMy3htnuylHhpnuwU85Z_hdu2c7EMFMQpUS8CBe2zb5_kn6eJRaS7h1wSgWqTRQF3gP2bD1DmEmBdtwJBPHrWSx8z2VlloLmu_i1X9w";
             const response = await fetch('http://127.0.0.1:8000/api/templates/create', {
                 method: 'POST',
                 headers: {

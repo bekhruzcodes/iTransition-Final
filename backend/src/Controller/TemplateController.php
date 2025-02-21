@@ -2,81 +2,55 @@
 
 namespace App\Controller;
 
+use App\Entity\Question;
 use App\Entity\QuestionOption;
 use App\Entity\Template;
-use App\Entity\Question;
 use App\Entity\Topic;
-use App\Repository\TemplateRepository;
 use App\Repository\QuestionRepository;
+use App\Repository\TemplateRepository;
 use App\Repository\TopicRepository;
+use App\Traits\EntityValidationTrait;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/api/templates')]
 class TemplateController extends AbstractController
 {
+    use EntityValidationTrait;
+
+    protected function getValidator(): ValidatorInterface
+    {
+        return $this->validator;
+    }
+
+    protected function getEntityManager(): EntityManagerInterface
+    {
+        return $this->entityManager;
+    }
     public function __construct(
         private EntityManagerInterface $entityManager,
         private TemplateRepository $templateRepository,
         private QuestionRepository $questionRepository,
-        private ValidatorInterface $validator
+        private ValidatorInterface $validator,
+        private TopicRepository $topicRepository,
     ) {}
-
-    private function validateEntity($entity): ?JsonResponse
-    {
-        $errors = $this->validator->validate($entity);
-        if (count($errors) > 0) {
-            return $this->json(['errors' => (string) $errors], 400);
-        }
-        return null;
-    }
-
-    private function findTemplateOr404(int $id): ?Template
-    {
-        $template = $this->templateRepository->find($id);
-        if (!$template) {
-            throw new \Exception('Template not found', 404);
-        }
-        return $template;
-    }
-
-    private function findQuestionOr404(int $templateId, int $questionId): ?Question
-    {
-        $question = $this->questionRepository->find($questionId);
-        if (!$question || $question->getTemplate()->getId() !== $templateId) {
-            throw new \Exception('Question not found', 404);
-        }
-        return $question;
-    }
-
-    private function findOptionOr404(Question $question, int $optionId): ?QuestionOption
-    {
-        $option = $this->entityManager->getRepository(QuestionOption::class)->find($optionId);
-        if (!$option || $option->getQuestion() !== $question) {
-            throw new \Exception('Option not found', 404);
-        }
-        return $option;
-    }
-
-    private function handleException(\Exception $e): JsonResponse
-    {
-        $statusCode = $e->getCode() ?: 400;
-        return $this->json([
-            'error' => $statusCode === 404 ? $e->getMessage() : 'Operation failed',
-            'message' => $statusCode === 404 ? null : $e->getMessage()
-        ], $statusCode);
-    }
 
     #[Route('/list', methods: ['GET'])]
     public function list(): JsonResponse
     {
         try {
             $templates = $this->templateRepository->findAll();
-            return $this->json(['templates' => $templates]);
+            return $this->json(
+                ['templates' => $templates],
+                200,
+                [],
+                [AbstractNormalizer::GROUPS => ['template-read']]
+            );
         } catch (\Exception $e) {
             return $this->handleException($e);
         }
@@ -223,6 +197,16 @@ class TemplateController extends AbstractController
                 'message' => $e->getMessage(),
                 'code' => $statusCode
             ], $statusCode);
+        }
+    }
+
+    #[Route('/topics', methods: ['GET'])]
+    public function listTopics(Request $request): JsonResponse{
+        try {
+            $topics = $this->topicRepository->findAll();
+            return $this->json(['topics' => $topics]);
+        } catch (\Exception $e) {
+            return $this->handleException($e);
         }
     }
 
@@ -456,4 +440,6 @@ class TemplateController extends AbstractController
             return $this->handleException($e);
         }
     }
+
+
 }

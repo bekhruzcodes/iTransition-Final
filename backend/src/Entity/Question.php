@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity]
 #[ORM\Table(name: "questions")]
@@ -14,31 +15,40 @@ class Question
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: "integer")]
+    #[Groups(['template-read', 'template-write','question-read', 'question-write'])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: Template::class, inversedBy: "questions")]
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    #[Groups(['question-read', 'question-write'])]
     private ?Template $template = null;
 
     #[ORM\OneToMany(targetEntity: QuestionOption::class, mappedBy: "question", cascade: ["persist", "remove"])]
+    #[Groups(['question-read', 'question-write', 'template-read', 'template-write'])]
     private Collection $options;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Groups(['question-read', 'question-write', 'template-read', 'template-write'])]
     private string $text;
 
     #[ORM\Column(type: "string", length: 50)]
+    #[Groups(['question-read', 'question-write', 'template-read', 'template-write'])]
     private string $type;
 
     #[ORM\Column(type: "boolean", options: ["default" => true])]
+    #[Groups(['question-read', 'question-write', 'template-read', 'template-write'])]
     private bool $required = true;
 
     #[ORM\Column(type: "integer")]
+    #[Groups(['template-read', 'template-write', 'question-read', 'question-write'])]
     private int $orderNum;
 
     #[ORM\Column(type: "datetime", options: ["default" => "CURRENT_TIMESTAMP"])]
+    #[Groups(['question-read', 'question-write', 'template-read', 'template-write'])]
     private \DateTimeInterface $createdAt;
 
     #[ORM\Column(type: "datetime", options: ["default" => "CURRENT_TIMESTAMP"])]
+    #[Groups(['question-read', 'question-write', 'template-read', 'template-write'])]
     private \DateTimeInterface $updatedAt;
 
     #[ORM\PrePersist]

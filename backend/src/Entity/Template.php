@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity]
 #[ORM\Table(name: "templates")]
@@ -13,41 +14,52 @@ class Template
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: "integer")]
+    #[Groups(['template-read', 'template-write'])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: "App\Entity\User")]
     #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", onDelete: "CASCADE", nullable: false)] // Set nullable: false to match DB
+    #[Groups(['template-read', 'template-write'])]
     private ?User $user = null;
 
     #[ORM\ManyToOne(targetEntity: "App\Entity\Topic")]
     #[ORM\JoinColumn(name: "topic_id", referencedColumnName: "id", onDelete: "CASCADE", nullable: false)] // Set nullable: false to match DB
+    #[Groups(['template-read', 'template-write'])]
     private ?Topic $topic = null;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: "templates")]
+    #[Groups(['template-read', 'template-write'])]
     private Collection $tags;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Groups(['template-read', 'template-write'])]
     private ?string $title = null;
 
     #[ORM\Column(type: "text")]
+    #[Groups(['template-read', 'template-write'])]
     private ?string $description = null;
 
     #[ORM\Column(type: "string", length: 255, nullable: true)]
+    #[Groups(['template-read', 'template-write'])]
     private ?string $imageUrl = null;
 
     #[ORM\Column(type: "boolean")]
+    #[Groups(['template-read', 'template-write'])]
     private bool $isPublic = true; // Default value matches DB
 
     #[ORM\Column(type: "datetime", nullable: true)]
+    #[Groups(['template-read', 'template-write'])]
     private ?\DateTime $createdAt = null; // You can set a default value in DB, but make sure it's nullable in the entity.
 
     #[ORM\Column(type: "datetime", nullable: true)]
+    #[Groups(['template-read', 'template-write'])]
     private ?\DateTime $updatedAt = null;
 
     /**
      * @var Collection<int, Question>
      */
     #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'template')]
+    #[Groups(['template-read', 'template-write'])]
     private Collection $questions; // Same for updated_at
 
     public function __construct()

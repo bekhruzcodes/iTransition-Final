@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Serializer\Attribute\Ignore;
 
 #[ORM\Entity]
@@ -14,9 +15,11 @@ class Tag
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: "integer")]
+    #[Groups(['template-read', 'template-write'])]
     private ?int $id = null;
 
     #[ORM\Column(type: "string", length: 255, unique: true)]
+    #[Groups(['template-read', 'template-write'])]
     private ?string $name = null;
 
     #[ORM\Column(type: "datetime")]
@@ -30,7 +33,7 @@ class Tag
      */
     #[ORM\ManyToMany(targetEntity: Template::class, inversedBy: "tags")]
     #[ORM\JoinTable(name: "templates_tags")]
-    #[Ignore]
+    #[Groups(['tag-read'])]
     private Collection $templates;
 
     public function __construct()
