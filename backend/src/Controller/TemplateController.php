@@ -61,7 +61,7 @@ class TemplateController extends AbstractController
         return new JsonResponse($formattedSuggestions);
     }
 
-    #[Route('/list', methods: ['GET'])]
+    #[Route('/list', name: 'api_templates', methods: ['GET'])]
     public function list(): JsonResponse
     {
         try {
