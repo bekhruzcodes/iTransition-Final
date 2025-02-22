@@ -2,21 +2,79 @@ import { Layout } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import Card from '../card/Card';
 
-// const mockLatestTemplates = [
-//     {
-//         id: 1,
-//         title: 'Customer Satisfaction',
-//         description: 'A survey for customer satisfaction.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         user: {
-//             name: 'John Doe'
-//         }
-//     },
-// ]
+const mockLatestTemplates = [
+    {
+        id: 1,
+        title: 'Customer Satisfaction',
+        description: 'A survey for customer satisfaction.',
+        imageUrl: 'https://via.placeholder.com/150',
+        user: {
+            name: 'John Doe'
+        },
+        tags: [
+            { "id": 2, "name": "work" },
+            { "id": 3, "name": "study" }
+        ],
+
+    },
+    {
+        id: 2,
+        title: 'Job Application',
+        description: 'A form for job applications.',
+        imageUrl: 'https://via.placeholder.com/150',
+        user: {
+            name: 'Jane Smith'
+        },
+        tags: [
+            { "id": 2, "name": "work" },
+            { "id": 3, "name": "study" }
+        ],
+    },
+    {
+        id: 3,
+        title: 'Event Registration',
+        description: 'A form for event registrations.',
+        imageUrl: 'https://via.placeholder.com/150',
+        user: {
+            name: 'Michael Lee'
+        },
+        tags: [
+            { "id": 2, "name": "work" },
+            { "id": 3, "name": "study" }
+        ],
+    },
+    {
+        id: 4,
+        title: 'Product Feedback',
+        description: 'A form for product feedback.',
+        imageUrl: 'https://via.placeholder.com/150',
+        user: {
+            name: 'Sarah Williams'
+        },
+        tags: [
+            { "id": 2, "name": "work" },
+            { "id": 3, "name": "study" }
+        ],
+    },
+    {
+        id: 5,
+        title: 'Contact Form',
+        description: 'A form for contact information.',
+        imageUrl: 'https://via.placeholder.com/150',
+        user: {
+            name: 'David Brown'
+        },
+        tags: [
+            { "id": 2, "name": "work" },
+            { "id": 3, "name": "study" }
+        ],
+    }
+]
 
 
 const Recent = () => {
     const [latestTemplates, setLatestTemplates] = useState([]);
+    const [showAll, setShowAll] = useState(false);
 
     // useEffect(() => {
     //     setLatestTemplates(mockLatestTemplates);
@@ -53,13 +111,18 @@ const Recent = () => {
 
     return (
         <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <Layout className="w-6 h-6 mr-2 text-purple-600" />
-                Latest Templates
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex justify-between">
+                <span className="flex items-center">
+                    <Layout className="w-6 h-6 mr-2 text-purple-600" />
+                    Latest Templates
+                </span>
+                <button onClick={()=> setShowAll(!showAll)} className='text-sm text-purple-600 ml-2'>
+                    {showAll ? 'Show Less' : 'Show All'}
+                </button>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {latestTemplates.map((template) => (
-                    <Card template={template} key={template.id}/>
+                {(showAll ? latestTemplates : latestTemplates?.slice(0, 3)).map((template) => (
+                    <Card template={template} key={template.id} />
                 ))}
             </div>
         </div>
