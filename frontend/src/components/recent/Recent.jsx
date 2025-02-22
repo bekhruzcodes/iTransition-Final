@@ -1,13 +1,16 @@
 import { Layout } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import Card from '../card/Card';
+import img1 from '../../images/login.JPG'
+import img2 from '../../images/register.jpg'
+import img3 from '../../images/general.jpeg'
 
 const mockLatestTemplates = [
     {
         id: 1,
         title: 'Customer Satisfaction',
         description: 'A survey for customer satisfaction.',
-        imageUrl: 'https://via.placeholder.com/150',
+        imageUrl: img1,
         user: {
             name: 'John Doe'
         },
@@ -21,7 +24,7 @@ const mockLatestTemplates = [
         id: 2,
         title: 'Job Application',
         description: 'A form for job applications.',
-        imageUrl: 'https://via.placeholder.com/150',
+        imageUrl: img2,
         user: {
             name: 'Jane Smith'
         },
@@ -34,7 +37,7 @@ const mockLatestTemplates = [
         id: 3,
         title: 'Event Registration',
         description: 'A form for event registrations.',
-        imageUrl: 'https://via.placeholder.com/150',
+        imageUrl: img3,
         user: {
             name: 'Michael Lee'
         },
@@ -76,34 +79,34 @@ const Recent = () => {
     const [latestTemplates, setLatestTemplates] = useState([]);
     const [showAll, setShowAll] = useState(false);
 
-    // useEffect(() => {
-    //     setLatestTemplates(mockLatestTemplates);
-    // }, []);
-
-
-
     useEffect(() => {
-        const fetchLatestTemplates = async () => {
-            try {
-                const response = await fetch('http://127.0.0.1:8000/api/templates/list');
-                const data = await response.json();
-
-                console.log("Full API Response:", data);
-
-                if (Array.isArray(data?.templates)) {
-                    setLatestTemplates(data.templates);
-                } else {
-                    console.error("Error: data.templates is not an array", data.templates);
-                    setLatestTemplates([]);
-                }
-            } catch (error) {
-                console.error('Error fetching latest templates:', error);
-                setLatestTemplates([]);
-            }
-        };
-
-        fetchLatestTemplates();
+        setLatestTemplates(mockLatestTemplates);
     }, []);
+
+
+
+    // useEffect(() => {
+    //     const fetchLatestTemplates = async () => {
+    //         try {
+    //             const response = await fetch('http://127.0.0.1:8000/api/templates/list');
+    //             const data = await response.json();
+
+    //             console.log("Full API Response:", data);
+
+    //             if (Array.isArray(data?.templates)) {
+    //                 setLatestTemplates(data.templates);
+    //             } else {
+    //                 console.error("Error: data.templates is not an array", data.templates);
+    //                 setLatestTemplates([]);
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching latest templates:', error);
+    //             setLatestTemplates([]);
+    //         }
+    //     };
+
+    //     fetchLatestTemplates();
+    // }, []);
 
 
 
