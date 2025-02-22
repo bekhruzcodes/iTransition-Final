@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Plus, Trash2, GripVertical, Type, Radio, CheckSquare, List, X} from 'lucide-react';
+import TopicDropdown from '../components/topicDropdown/TopicDropdown';
 
 const FormBuilder = () => {
     const [formData, setFormData] = useState({
         template: {
             title: "Untitled Form",
             description: "",
+            topic: null,
             tags: []
         },
         questions: []
@@ -14,6 +16,16 @@ const FormBuilder = () => {
     const [tagInput, setTagInput] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+
+    const handleTopicChange = (topicId) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            template: {
+                ...prevData.template,
+                topic: topicId // Set topic ID
+            }
+        }));
+    };
 
     // Fetch tag suggestions from the backend
     const fetchTagSuggestions = async (query) => {
@@ -178,16 +190,19 @@ const FormBuilder = () => {
             <div className="max-w-4xl mx-auto">
                 {/* Form Header */}
                 <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <input
-                        type="text"
-                        value={formData.template.title}
-                        onChange={(e) => setFormData(prev => ({
-                            ...prev,
-                            template: {...prev.template, title: e.target.value}
-                        }))}
-                        className="w-full text-3xl font-bold mb-4 p-2 border-b border-transparent focus:border-purple-500 focus:outline-none"
-                        placeholder="Form Title"
-                    />
+                    <div className='flex flex-col sm:flex-row sm:justify-between gap-3'>
+                        <input
+                            type="text"
+                            value={formData.template.title}
+                            onChange={(e) => setFormData(prev => ({
+                                ...prev,
+                                template: {...prev.template, title: e.target.value}
+                            }))}
+                            className="w-full text-3xl font-bold mb-4 p-2 border-b border-transparent focus:border-purple-500 focus:outline-none"
+                            placeholder="Form Title"
+                        />
+                        <TopicDropdown onTopicSelect={handleTopicChange} />
+                    </div>
                     <input
                         type="text"
                         value={formData.template.description}
@@ -198,6 +213,7 @@ const FormBuilder = () => {
                         className="w-full text-gray-600 p-2 border-b border-transparent focus:border-purple-500 focus:outline-none"
                         placeholder="Form Description"
                     />
+                    
                 </div>
                 {/* Tags Section */}
                 <div className="relative">
